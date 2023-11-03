@@ -20,7 +20,7 @@ public class GameJFrame extends JFrame {
         basePanel.add(gamePanel, BorderLayout.NORTH);
         loadPlayingField(rows);
 
-        JButton winGame = getWinGameButton();
+        JButton winGame = winGameButton();
         textPanel.add(winGame);
 
         JButton newGame = new JButton();
@@ -34,7 +34,7 @@ public class GameJFrame extends JFrame {
         textPanel.add(newGame);
         basePanel.add(textPanel, BorderLayout.SOUTH);
 
-        JButton gridSize = getGridSizeButton();
+        JButton gridSize = gridSizeButton();
         textPanel.add(gridSize);
 
         game.setVisible(true);
@@ -43,7 +43,7 @@ public class GameJFrame extends JFrame {
         game.pack();
     }
 
-    private JButton getGridSizeButton() {
+    private JButton gridSizeButton() {
         JButton gridSize = new JButton();
         gridSize.setText("Set Rows");
         gridSize.addMouseListener(new MouseAdapter() {
@@ -70,7 +70,7 @@ public class GameJFrame extends JFrame {
         return gridSize;
     }
 
-    private JButton getWinGameButton() {
+    private JButton winGameButton() {
         JButton winGame = new JButton();
         winGame.setText("Win Game");
         winGame.addMouseListener(new MouseAdapter() {
@@ -119,9 +119,9 @@ public class GameJFrame extends JFrame {
                     public void mouseClicked(MouseEvent e) {
                         JButton temp = (JButton) e.getSource();
                         SwapIndex swapIndex = new SwapIndex();
-                        String empty = swapIndex.checkEmpty(buttons, getArrayButtonCoordinates(temp), buttons.length);
+                        String empty = swapIndex.checkEmpty(buttons, arrayButtonCoordinates(temp), buttons.length);
                         if (!empty.equals(",")) {
-                            buttons = swapIndex.swapPosition(buttons, getArrayButtonCoordinates(temp), empty);
+                            buttons = swapIndex.swapPosition(buttons, arrayButtonCoordinates(temp), empty);
                             gamePanel.removeAll();
                             for (JButton[] button : buttons) {
                                 for (JButton jButton : button) {
@@ -150,7 +150,7 @@ public class GameJFrame extends JFrame {
         gamePanel.repaint();
     }
 
-    private String getArrayButtonCoordinates(JButton button) {
+    private String arrayButtonCoordinates(JButton button) {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 if (button == buttons[i][j]) {
